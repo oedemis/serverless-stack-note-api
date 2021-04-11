@@ -1,7 +1,7 @@
 # NOTE: if you change the name and deploy your project it will create new project
 service: notes-api
 
-# Create an optimized package for our functions 
+# Create an optimized package for our functions
 package:
   individually: true
 
@@ -13,7 +13,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: prod
+  stage: dev
   profile: us
   region: us-east-1
 
@@ -36,7 +36,6 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
       Resource: "arn:aws:dynamodb:us-east-1:*:*"
-
 
 functions:
   create:
@@ -105,7 +104,7 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-          
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
